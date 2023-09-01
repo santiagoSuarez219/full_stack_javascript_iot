@@ -2,17 +2,18 @@
 Mi nombre es Santiago Suarez, Soy Joven Investigador del laboratorio de Sistemas de control y robotica del Instituto Tecnologico Metropolitano de Medellin y estudiante de Ingenieria Electronica. En este repositorio, se encontraran los archivos de las clases del curso de Desarrollo FullStack con JavaScript orientado a aplicaciones de Iot.
 
 ## Contenido
-1. Fundamentos de JavaScript y TypeScript
+1. Configuracion de entorno de trabajo
+2. Fundamentos de JavaScript y TypeScript
    1. Introduccion a JavaScript
    2. Introduccion a TypeScript
    3. Programacion orientada a objetos con TypeScript
 
-2. Fundamentos de desarrollo Backend utilizando TypeScript y Nest JS.
+3. Fundamentos de desarrollo Backend utilizando TypeScript y Nest JS.
    1. API Rest con Nest JS
    2. MQTT y WebSocket para aplicaciones IoT
    3. Persistencia de datos en bases de datos NO SQL
 
-3. Fundamentos de desarrollo Frontend utilizando JavaScript y React
+4. Fundamentos de desarrollo Frontend utilizando JavaScript y React
    1. Fundamentos de HTML y CSS
    2. Fundamentos de ReactJS
    3. Fundamentos de Docker y despliegue de aplicacion en un servidor
