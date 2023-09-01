@@ -96,6 +96,12 @@ node --version
 npm --version
 ```
 
+## Fundamentos de JavaScript y TypeScript
+### Introduccion a JavaScript
+
+
+
+
 
 
 
