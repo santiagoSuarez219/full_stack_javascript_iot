@@ -96,8 +96,104 @@ node --version
 npm --version
 ```
 
-## Fundamentos de JavaScript y TypeScript
+## Fundamentos de JavaScript
 ### Introduccion a JavaScript
+JavaScript es un lenguaje de programación de alto nivel que se utiliza principalmente en el desarrollo web para agregar interactividad y dinamismo a las páginas web. Fue creado originalmente por Netscape y se ha convertido en uno de los lenguajes de programación más populares y ampliamente utilizados en el mundo. JavaScript se ejecuta en el lado del cliente en la mayoría de los navegadores web modernos. También se puede utilizar en el lado del servidor a través de Node.js.
+
+Además de su uso en el desarrollo web, JavaScript también se ha expandido para ser utilizado en otros contextos, como el desarrollo de aplicaciones móviles (usando frameworks como React Native), el desarrollo de aplicaciones de servidor (usando Node.js), la automatización de tareas en navegadores web, y más.
+
+#### Lenguajes de alto nivel
+Un lenguaje de programación de alto nivel es un tipo de lenguaje de programación que está diseñado para ser más comprensible y más cercano al lenguaje humano que a la máquina. Estos lenguajes se crean con el objetivo de facilitar la escritura de programas y reducir la complejidad al programar, al proporcionar abstracciones y características que permiten a los programadores expresar sus ideas de manera más clara y concisa.
+
+Ejemplos de lenguajes de alto nivel populares incluyen Python, Java, JavaScript, Ruby, C#, y muchos otros. Estos lenguajes son ampliamente utilizados en una variedad de aplicaciones, desde desarrollo web y aplicaciones móviles hasta inteligencia artificial y análisis de datos, debido a su facilidad de uso y versatilidad.
+
+#### Frameworks
+Un framework de desarrollo, en el contexto de la programación de software, es una estructura predefinida y un conjunto de herramientas, bibliotecas y componentes que facilitan el desarrollo de aplicaciones y sistemas de software. Los frameworks proporcionan un esqueleto o una base sobre la cual los desarrolladores pueden construir sus aplicaciones, lo que acelera el proceso de desarrollo y ayuda a mantener un código más organizado y consistente.
+
+Ejemplos de frameworks de desarrollo incluyen:
+
+1. Django: Un framework de desarrollo web para Python.
+2. Ruby on Rails: Un framework de desarrollo web para Ruby.
+3. Angular y React: Frameworks de desarrollo web front-end para JavaScript.
+4. Spring: Un framework de desarrollo de aplicaciones Java.
+5. Express.js: Un framework de desarrollo web para Node.js.
+
+### Tipos de datos en JavaScript
+1. [Codigo](./modulo2/javascript/01_tipos_de_datos.js)
+
+### Variables en JavaScript
+1. [Codigo](./modulo2/javascript/02_variables.js)
+
+### Operadores en JavaScript
+1. [Operadores](https://javascript.info/operators)
+
+### Operadores de comparacion
+1. [Comparacion](https://javascript.info/comparison)
+
+### Condicionales
+1. [Condicionales](https://javascript.info/ifelse)
+2. [Codigo](./modulo2/javascript/03_condicionales.js)
+
+### Operadores Logicos
+1. [Logicos](https://javascript.info/logical-operators)
+
+### Ciclos
+1. [Ciclos](https://javascript.info/while-for)
+
+### Funciones en JavaScript
+1. [Funciones](https://javascript.info/function-basics)
+2. [Codigo](./modulo2/javascript/04_funciones.js)
+
+## Fundamentos de TypeScript
+### Configuracion de un proyecto de TypeScript
+1. Crear un proyecto de Node JS
+```bash
+npm init -y
+```
+2. Instalar TypeScript
+```bash
+npm install typescript --save-dev
+```
+3. Verificar la version de TypeScript
+```bash
+npx tsc --version
+```
+
+### Encontrando errores con TS
+1. [Codigo](./modulo2/typescript/01_demo.js)
+
+### Convirtiendo un archivo de TS a JS
+para convertir un archivo de TS a JS, debes ejecutar el siguiente comando
+```bash
+npx tsc nombre_archivo.ts
+```
+tambien puedes utilizar esta estructura mas completa
+```bash
+npx tsc archivo_typescript.ts --target es6 --outDir carpeta_destino
+```
+
+### TSConfig
+Para configurar un archivo de TS, debes ejecutar el siguiente comando
+```bash
+npx tsc --init
+```
+Una vez ejecutado el comando, se creara un archivo llamado tsconfig.json, en este archivo, podras configurar tu proyecto de TS
+
+Algunas configuraciones importantes son:
+1. target: Especifica la version de JS a la que se compilara el codigo
+2. outDir: Especifica la carpeta de destino de los archivos compilados
+3. rootDir: Especifica la carpeta de origen de los archivos a compilar
+
+Para transpilar un proyecto de TS, debes ejecutar el siguiente comando
+```bash
+npx tsc
+```
+Para transpilar un proyecto de TS en modo watch, debes ejecutar el siguiente comando
+```bash
+npx tsc --watch
+```
+este modo permite que, cada vez que se realice un cambio en el codigo, se compile automaticamente
+
 
 
 
