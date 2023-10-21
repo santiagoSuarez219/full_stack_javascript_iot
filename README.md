@@ -194,6 +194,17 @@ npx tsc --watch
 ```
 este modo permite que, cada vez que se realice un cambio en el codigo, se compile automaticamente
 
+### Tipos de datos en TypeScript
+1. [Codigo](./modulo2/typescript/src/03_tipado.ts)
+
+### Funciones en TypeScript
+1. [Codigo](./modulo2/typescript/src/04_funciones.ts)
+
+### Modulos en TypeScript
+1. [Modulo](./modulo2/typescript/src/suma_resta.ts)
+2. [Codigo](./modulo2/typescript/src/05_modulos.ts)
+
+
 
 
 
