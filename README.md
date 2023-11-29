@@ -325,6 +325,87 @@ La herencia es una herramienta poderosa que puede utilizarse para mejorar la efi
 
 1. [Herencia](./modulo2/typescript/src/POO_ts/08_herencia.ts)
 
+## Fundamentos de desarrollo Backend utilizando TypeScript y Nest JS.
 
+Instalacion de nest 
 
+```bash
+npm install -g @nestjs/cli
+```
+
+Una vez instalado el CLI, verifica que el proceso es correcto con el comando
+
+```bash
+nest --version
+```
+
+### Primer proyecto
+Para crear tu primer proyecto con este framework basta con utilizar el comando
+```bash
+nest new <project-name>
+cd <project-name>
+```
+
+El CLI te realizará una pregunta sobre qué gestor de dependencias quieres utilizar:
+
+Para este ejemplo, escojeremos NPM. Luego de algunos segundos, tu primer proyecto estará listo.
+
+Ahora, utiliza el comando 
+```bash
+npm run start
+```
+
+para levantar el servidor de pruebas básico que trae consigo NestJS y finalmente, ingresa a http://localhost:3000/ para visualizar tu primer “Hola Mundo” con esta tecnología.
+
+Archivo ./editorconfig
+
+```bash
+# ./editorconfig
+# Editor configuration, see https://editorconfig.org
+root = true
+
+[*]
+charset = utf-8
+indent_style = space
+indent_size = 2
+insert_final_newline = true
+trim_trailing_whitespace = true
+
+[*.ts]
+quote_type = single
+
+[*.md]
+max_line_length = off
+trim_trailing_whitespace = false
+```
+
+### Controladores
+El concepto más básico para desarrollar una aplicación con NestJS son los Controladores.
+Los Controladores manejarán las rutas o endpoints que la aplicación necesite, además de validar los permisos del usuario, filtro y manipulación de datos. El controlador importa un servicio que son los responsables de la lógica y obtención de datos desde una BBDD que el controlador requiere.
+
+Para crear un controlador, debes ejecutar el siguiente comando
+```bash
+nest generate controller <nombre-controlador>
+```
+
+Puedes correr el servidor de NestJS con el comando `npm run start:dev` e ingresar a la ruta localhost:3000/ para visualizar el contenido que el controlador envía.
+
+#### GET: como recibir parametros
+Existen diferentes tipos de endpoints que se identifican a través de los Verbos HTTP. Cada uno con un propósito determinado siguiendo el protocolo.En particular, el verbo GET suele utilizarse para endpoints que permiten la obtención de datos como un producto o una lista de productos.
+
+Es frecuente la necesidad de que este tipo de endpoints también reciban información dinámica en las URL como el identificador de un producto.Para capturar estos datos en NestJS, tienes que importar el decorador Param desde @nestjs/common y emplearlo de la siguiente manera en tus endpoints.
+
+#### Parametros query
+Por otro lado, están los parámetros de consulta o query en las URL como por ejemplo example.com/products?limit=10&offset=20 que se capturan con el decorador @Query() importado desde @nestjs/common.
+
+Su principal diferencia es que los parámetros de consulta suelen ser opcionales; el comportamiento del endpoint tiene que contemplar que estos datos pueden no existir con un valor por defecto.
+
+Los parámetros de ruta se utilizan para IDs u otros identificadores obligatorios, mientras que los parámetros de consulta se utilizan para aplicar filtros opcionales a una consulta. Utilízalos apropiadamente en tus endpoints según tengas la necesidad.
+
+### Metodo POST
+Así como el verbo HTTP GET se utiliza para la obtención de datos, el verbo HTTP Post se utiliza para la creación de los mismos previamente.
+
+El metodo post se utiliza para crear un recurso en el servidor, por ejemplo, crear un usuario, crear un producto, crear una categoria, etc.
+
+En tu proyecto NestJS, tienes que importar los decoradores Post y Body desde @nestjs/common. El primero para indicar que el endpoint es del tipo POST y el segundo para capturar los datos provenientes del front-end en el cuerpo del mensaje.
 
