@@ -204,10 +204,126 @@ este modo permite que, cada vez que se realice un cambio en el codigo, se compil
 1. [Modulo](./modulo2/typescript/src/suma_resta.ts)
 2. [Codigo](./modulo2/typescript/src/05_modulos.ts)
 
+## Programacion orientada a objetos con TypeScript
+### Apendice: instalacion de ts node
+ts-node es un paquete de npm que nos permite ejecutar archivos de TypeScript directamente sin necesidad de compilarlos a JavaScript. Esto es muy útil para probar nuestro código de TypeScript sin tener que compilarlo cada vez que hagamos un cambio.
 
+Para instalar ts-node, debes ejecutar el siguiente comando
+```bash
+npm install -D ts-node
+```
+Para ejecutar un archivo de TS con ts-node, debes ejecutar el siguiente comando
 
+```bash
+npx ts-node nombre_archivo.ts
+```
 
+### Objetos
+En el contexto de la programación orientada a objetos (POO), un objeto es una entidad que representa un concepto o una entidad del mundo real. Tiene un estado y un comportamiento.
 
+El estado de un objeto es la información que lo define, como su nombre, su edad, su color, etc. El comportamiento de un objeto es lo que puede hacer, como caminar, hablar, comer, etc.
+
+Los objetos se pueden agrupar en clases. Una clase es un molde que se utiliza para crear objetos. Cada clase tiene un conjunto de atributos y métodos que definen el estado y el comportamiento de los objetos de esa clase.
+
+Por ejemplo, la clase `Persona` podría tener los siguientes atributos:
+
+* nombre
+* edad
+* sexo
+
+Y los siguientes métodos:
+
+* hablar()
+* caminar()
+* comer()
+
+Un objeto `Persona` creado a partir de esta clase tendría un estado y un comportamiento definido por los valores de sus atributos y la implementación de sus métodos.
+
+Los objetos son una forma potente de organizar el código. Permiten que los programadores piensen en los problemas en términos de entidades del mundo real, lo que puede facilitar el desarrollo de software.
+
+Aquí hay algunos ejemplos de objetos en la programación orientada a objetos:
+
+* Un coche es un objeto que tiene un estado (color, marca, modelo, etc.) y un comportamiento (acelerar, frenar, girar, etc.).
+* Una ventana es un objeto que tiene un estado (tamaño, posición, etc.) y un comportamiento (abrir, cerrar, maximizar, minimizar, etc.).
+* Un cliente es un objeto que tiene un estado (nombre, dirección, etc.) y un comportamiento (comprar, devolver, etc.).
+
+Los objetos se pueden utilizar para representar cualquier cosa, desde objetos físicos hasta conceptos abstractos.
+
+![POO1](https://static.platzi.com/media/user_upload/%C2%BFQu%C3%A9%20es%20un%20Objeto-47c35a48-0599-4e3d-acf0-084b27d007fc.jpg)
+
+![POO2](https://edteam-media.s3.amazonaws.com/community/original/293a1738-c643-465b-8c30-677d8b185e46.jpg)
+
+### Clases
+En el contexto de la programación orientada a objetos (POO), una clase es una plantilla que se utiliza para crear objetos. Define el estado y el comportamiento de los objetos de esa clase.
+
+El estado de un objeto es la información que lo define, como su nombre, su edad, su color, etc. El comportamiento de un objeto es lo que puede hacer, como caminar, hablar, comer, etc.
+
+Una clase se compone de los siguientes elementos:
+
+* **Atributos:** Representan el estado de los objetos de la clase. Pueden ser variables, constantes o propiedades.
+* **Métodos:** Representan el comportamiento de los objetos de la clase. Pueden ser funciones o procedimientos.
+
+Por ejemplo, la clase `Persona` podría tener los siguientes atributos:
+
+* **nombre:** Una variable de tipo cadena que representa el nombre de la persona.
+* **edad:** Una variable de tipo entero que representa la edad de la persona.
+* **sexo:** Una variable de tipo enumerado que representa el sexo de la persona.
+
+Y los siguientes métodos:
+
+* **hablar():** Un método que representa la acción de hablar.
+* **caminar():** Un método que representa la acción de caminar.
+* **comer():** Un método que representa la acción de comer.
+
+Un objeto `Persona` creado a partir de esta clase tendría un estado y un comportamiento definido por los valores de sus atributos y la implementación de sus métodos.
+
+Aquí hay algunos ejemplos de clases en la programación orientada a objetos:
+
+* La clase `Coche` representa un coche.
+* La clase `Ventana` representa una ventana.
+* La clase `Cliente` representa un cliente.
+
+Las clases se pueden utilizar para representar cualquier cosa, desde objetos físicos hasta conceptos abstractos.
+
+Las clases son una forma importante de organizar el código en la programación orientada a objetos. Permiten que los programadores piensen en los problemas en términos de entidades del mundo real, lo que puede facilitar el desarrollo de software.'
+
+1. [Clases](./modulo2/typescript/src/POO_ts/06_clases.ts)
+2. [Metodos](./modulo2/typescript/src/POO_ts/07_metodos.ts)
+
+### Herencia
+En la programación orientada a objetos (POO), la herencia es un mecanismo que permite que una clase herede las características de otra clase.
+
+Las características heredadas pueden ser atributos, métodos o incluso otras clases.
+
+La herencia se utiliza para lograr varios objetivos en la POO, incluyendo:
+
+* **Reutilización de código:** La herencia permite reutilizar el código que se ha escrito para una clase en otra clase. Esto puede ahorrar tiempo y esfuerzo a los programadores.
+* **Extensión de funcionalidad:** La herencia permite extender la funcionalidad de una clase existente. Esto puede hacerse añadiendo nuevos atributos, métodos o incluso nuevas clases.
+* **Organización de código:** La herencia puede utilizarse para organizar el código en una jerarquía de clases. Esto puede facilitar la comprensión y el mantenimiento del código.
+
+La herencia se implementa de forma diferente en diferentes lenguajes de programación. Sin embargo, en general, la herencia se expresa utilizando la palabra clave `extends`.
+
+Por ejemplo, la siguiente declaración de clase muestra cómo la clase `Coche` hereda de la clase `Vehículo`:
+
+```
+class Coche extends Vehiculo {
+
+  // Atributos y métodos específicos de Coche
+
+}
+```
+
+En este ejemplo, la clase `Coche` hereda los atributos y métodos de la clase `Vehículo`. Además, la clase `Coche` puede definir sus propios atributos y métodos específicos.
+
+Aquí hay algunos ejemplos de cómo se puede utilizar la herencia en la POO:
+
+* Una clase `Animal` podría heredar de la clase `SerVivo`. Esto permitiría que los objetos `Animal` tuvieran todos los atributos y métodos de los objetos `SerVivo`.
+* Una clase `Coche` podría heredar de la clase `Vehículo`. Esto permitiría que los objetos `Coche` tuvieran todos los atributos y métodos de los objetos `Vehículo`.
+* Una clase `Ventana` podría heredar de la clase `ElementoGrafico`. Esto permitiría que los objetos `Ventana` tuvieran todos los atributos y métodos de los objetos `ElementoGrafico`.
+
+La herencia es una herramienta poderosa que puede utilizarse para mejorar la eficiencia y la flexibilidad del código en la POO.
+
+1. [Herencia](./modulo2/typescript/src/POO_ts/08_herencia.ts)
 
 
 
