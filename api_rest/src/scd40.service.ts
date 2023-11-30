@@ -1,9 +1,13 @@
 import { Injectable } from '@nestjs/common';
 
-import { scd40 } from './entities/scd40.entity'
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+import { scd40 } from './scd40.entity'
 
 @Injectable()
 export class Scd40Service {
+
     private contador = 2;
     private scd40data: scd40[] = [];
 
