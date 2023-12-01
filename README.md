@@ -744,7 +744,7 @@ export class Scd40Service {
             .exec();
     }
 
-    async remove(id: string): Promise<Scd40> {
+    async remove(id: string) {
         return this.scd40Model.findByIdAndDelete(id).exec();
     }
 }
