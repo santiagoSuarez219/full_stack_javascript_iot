@@ -357,28 +357,6 @@ npm run start
 
 para levantar el servidor de pruebas básico que trae consigo NestJS y finalmente, ingresa a http://localhost:3000/ para visualizar tu primer “Hola Mundo” con esta tecnología.
 
-Archivo ./editorconfig
-
-```bash
-# ./editorconfig
-# Editor configuration, see https://editorconfig.org
-root = true
-
-[*]
-charset = utf-8
-indent_style = space
-indent_size = 2
-insert_final_newline = true
-trim_trailing_whitespace = true
-
-[*.ts]
-quote_type = single
-
-[*.md]
-max_line_length = off
-trim_trailing_whitespace = false
-```
-
 ### Controladores
 El concepto más básico para desarrollar una aplicación con NestJS son los Controladores.
 Los Controladores manejarán las rutas o endpoints que la aplicación necesite, además de validar los permisos del usuario, filtro y manipulación de datos. El controlador importa un servicio que son los responsables de la lógica y obtención de datos desde una BBDD que el controlador requiere.
@@ -390,17 +368,73 @@ nest generate controller <nombre-controlador>
 
 Puedes correr el servidor de NestJS con el comando `npm run start:dev` e ingresar a la ruta localhost:3000/ para visualizar el contenido que el controlador envía.
 
+```typescript
+import { Controller, Get } from '@nestjs/common';
+import { AppService } from './app.service';
+
+@Controller()
+export class AppController {
+  constructor(private readonly appService: AppService) {}
+
+  @Get()
+  getHello(): string {
+    return this.appService.getHello();
+  }
+}
+```
+
+### Servicios
+Los servicios son clases que se encargan de la lógica de negocio de nuestra aplicación. Estos servicios pueden ser inyectados en los controladores para ser utilizados en los diferentes endpoints que se requieran.
+
+Para crear un servicio, debes ejecutar el siguiente comando
+```bash
+nest generate service <nombre-servicio>
+```
+
+```typescript
+import { Injectable } from '@nestjs/common';
+
+@Injectable()
+export class AppService {
+  getHello(): string {
+    return 'Hello World!';
+  }
+}
+```
+
+### Modulos
+Los módulos son clases que se encargan de organizar los controladores y servicios de nuestra aplicación. Estos módulos pueden ser inyectados en otros módulos para ser utilizados en los diferentes endpoints que se requieran.
+
+Para crear un modulo, debes ejecutar el siguiente comando
+```bash
+nest generate module <nombre-modulo>
+```
+
 #### GET: como recibir parametros
 Existen diferentes tipos de endpoints que se identifican a través de los Verbos HTTP. Cada uno con un propósito determinado siguiendo el protocolo.En particular, el verbo GET suele utilizarse para endpoints que permiten la obtención de datos como un producto o una lista de productos.
 
 Es frecuente la necesidad de que este tipo de endpoints también reciban información dinámica en las URL como el identificador de un producto.Para capturar estos datos en NestJS, tienes que importar el decorador Param desde @nestjs/common y emplearlo de la siguiente manera en tus endpoints.
 
-#### Parametros query
-Por otro lado, están los parámetros de consulta o query en las URL como por ejemplo example.com/products?limit=10&offset=20 que se capturan con el decorador @Query() importado desde @nestjs/common.
+```typescript
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
 
-Su principal diferencia es que los parámetros de consulta suelen ser opcionales; el comportamiento del endpoint tiene que contemplar que estos datos pueden no existir con un valor por defecto.
+import { Scd40Service } from './scd40.service'
 
-Los parámetros de ruta se utilizan para IDs u otros identificadores obligatorios, mientras que los parámetros de consulta se utilizan para aplicar filtros opcionales a una consulta. Utilízalos apropiadamente en tus endpoints según tengas la necesidad.
+@Controller('scd40')
+export class Scd40Controller {
+    constructor(private scd40Service: Scd40Service){}
+
+    @Get()
+    getDataScd40(){
+        return this.scd40Service.findAll()
+    }
+
+    @Get(':id')
+    getOne(@Param('id') id: string){
+        return this.scd40Service.findOne(+id)
+    }
+}
+```
 
 ### Metodo POST
 Así como el verbo HTTP GET se utiliza para la obtención de datos, el verbo HTTP Post se utiliza para la creación de los mismos previamente.
@@ -408,4 +442,317 @@ Así como el verbo HTTP GET se utiliza para la obtención de datos, el verbo HTT
 El metodo post se utiliza para crear un recurso en el servidor, por ejemplo, crear un usuario, crear un producto, crear una categoria, etc.
 
 En tu proyecto NestJS, tienes que importar los decoradores Post y Body desde @nestjs/common. El primero para indicar que el endpoint es del tipo POST y el segundo para capturar los datos provenientes del front-end en el cuerpo del mensaje.
+
+```typescript
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+
+import { Scd40Service } from './scd40.service'
+
+@Controller('scd40')
+export class Scd40Controller {
+    constructor(private scd40Service: Scd40Service){}
+
+    @Get()
+    getDataScd40(){
+        return this.scd40Service.findAll()
+    }
+
+    @Get(':id')
+    getOne(@Param('id') id: string){
+        return this.scd40Service.findOne(+id)
+    }
+
+    @Post()
+    create(@Body() data: any){
+        return this.scd40Service.create(data)
+    }
+```
+
+### Metodo PUT
+El verbo HTTP PUT se utiliza para la actualización de datos en el servidor. En tu proyecto NestJS, tienes que importar los decoradores Put y Body desde @nestjs/common. El primero para indicar que el endpoint es del tipo PUT y el segundo para capturar los datos provenientes del front-end en el cuerpo del mensaje.
+
+```typescript
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+
+import { Scd40Service } from './scd40.service'
+
+@Controller('scd40')
+export class Scd40Controller {
+    constructor(private scd40Service: Scd40Service){}
+
+    @Get()
+    getDataScd40(){
+        return this.scd40Service.findAll()
+    }
+
+    @Get(':id')
+    getOne(@Param('id') id: string){
+        return this.scd40Service.findOne(+id)
+    }
+
+    @Post()
+    create(@Body() data: any){
+        return this.scd40Service.create(data)
+    }
+
+    @Put(':id')
+    update(@Param('id') id: string, @Body() data: any){
+        return this.scd40Service.update(+id, data)
+    }
+}
+```
+
+### Metodo DELETE
+El verbo HTTP DELETE se utiliza para la eliminación de datos en el servidor. En tu proyecto NestJS, tienes que importar el decorador Delete desde @nestjs/common. Este decorador para indicar que el endpoint es del tipo DELETE.
+
+```typescript
+import { Body, Controller, Delete, Get, Param, Post, Put } from '@nestjs/common';
+
+import { Scd40Service } from './scd40.service'
+
+@Controller('scd40')
+export class Scd40Controller {
+    constructor(private scd40Service: Scd40Service){}
+
+    @Get()
+    getDataScd40(){
+        return this.scd40Service.findAll()
+    }
+
+    @Get(':id')
+    getOne(@Param('id') id: string){
+        return this.scd40Service.findOne(+id)
+    }
+
+    @Post()
+    create(@Body() data: any){
+        return this.scd40Service.create(data)
+    }
+
+    @Put(':id')
+    update(@Param('id') id: string, @Body() data: any){
+        return this.scd40Service.update(+id, data)
+    }
+
+    @Delete(':id')
+    delete(@Param('id') id: string){
+        return this.scd40Service.remove(+id)
+    }
+}
+```
+
+### Servicio SCD40
+```typescript
+import { Injectable } from '@nestjs/common';
+
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+import { scd40 } from './scd40.entity'
+
+@Injectable()
+export class Scd40Service {
+
+    private contador = 2;
+    private scd40data: scd40[] = [
+         {
+               id: 1,
+               co2: 400,
+               humedad: 50,
+               temperatura: 25,
+               fecha: new Date()
+         },
+         {
+               id: 2,
+               co2: 500,
+               humedad: 60,
+               temperatura: 30,
+               fecha: new Date()
+         }
+   ];
+
+    findAll() {
+        return this.scd40data;
+    }
+
+    findOne(id: number){
+        console.log(id);
+        return this.scd40data.find((item) => item.id === id);
+    }
+    
+    create(data: any){
+        this.contador = this.contador + 1;
+        const newData = {
+            id: this.contador,
+            ...data,
+            fecha: new Date()
+        };
+        this.scd40data.push(newData);
+        return newData
+    };
+
+    update(id: number, data: any) {
+        const dataSensor = this.findOne(id);
+        if (dataSensor) {
+            const index = this.scd40data.findIndex((item) => item.id == id);
+            this.scd40data[index] = {
+                ...dataSensor,
+                ...data,
+            };
+            return this.scd40data[index]
+        };
+        return null;
+    }
+
+    remove(id: number) {
+        const index = this.scd40data.findIndex((item) => item.id === id);
+        if(index === -1){
+            return false
+        }
+        this.scd40data.splice(index, 1);
+        return true
+    }
+}
+```
+
+### Persistencia de datos en bases de datos NO SQL
+#### Creacion de contenedor de MongoDB
+```yml
+version: '3'
+services:
+  my-database:
+    image: mongo:4.4.4
+    environment:
+      - MONGO_INITDB_DATABASE=scd40db
+      - MONGO_INITDB_ROOT_USERNAME=admin
+      - MONGO_INITDB_ROOT_PASSWORD=admin12345
+    ports:
+      - '27017:27017'
+    volumes:
+      - ./mongo_data:/data/db
+```
+
+#### Instalacion de paquetes
+```bash
+npm install --save @nestjs/mongoose mongoose
+```
+
+### Instalacion de MongoCompass
+[Descargar](https://www.mongodb.com/try/download/compass)
+
+#### Modulo de conexion
+```bash
+nest generate module database
+nest generate module scd40
+```
+
+```typescript
+// src/database/database.module.ts
+import { Module, Global } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose'
+
+@Global()
+@Module({
+    imports: [
+        MongooseModule.forRoot('mongodb://admin:admin12345@localhost:27017/?authMechanism=DEFAULT')
+    ],
+    exports: [MongooseModule]
+})
+export class DatabaseModule {}
+```
+
+```typescript
+// src/scd40/scd40.module.ts
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+
+import { Scd40, Scd40Schema} from './entities/scd40.entity'
+import { Scd40Service } from './services/scd40.service';
+ 
+@Module({
+    imports: [
+        MongooseModule.forFeature([
+            {name: Scd40.name, schema: Scd40Schema},
+        ])
+    ],
+    providers: [Scd40Service]
+})
+export class Scd40Module {}
+```
+
+#### Entidad SCD40
+```typescript
+// src/scd40/entities/scd40.entity.ts
+import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
+import { Document, Types } from 'mongoose';
+
+@Schema()
+export class Scd40 extends Document {
+  @Prop()
+  co2: number;
+
+  @Prop()
+  temperatura: number;
+
+  @Prop()
+  humedad: number;
+
+  @Prop()
+  VPD: number;
+
+  @Prop()
+  fecha: Date;
+}
+
+export const Scd40Schema = SchemaFactory.createForClass(Scd40);
+```
+
+#### Servicio SCD40
+```typescript
+// src/scd40/services/scd40.service.ts
+import { Injectable } from '@nestjs/common';
+import { InjectModel } from '@nestjs/mongoose';
+import { Model } from 'mongoose';
+
+import { Scd40 } from '../entities/scd40.entity';
+
+@Injectable()
+export class Scd40Service {
+    constructor(@InjectModel(Scd40.name) private scd40Model: Model<Scd40>) {}
+
+    async findAll() {
+        return this.scd40Model.find().exec();
+    }
+
+    async findOne(id: string) {
+        return this.scd40Model.findById(id).exec();
+    }
+
+    async create(data: any) {
+        const date = new Date();
+        const newDocument Data = {
+            ...data,
+            fecha: date
+        } 
+        const newScd40 = new this.scd40Model(newDocument);
+        return newScd40.save();
+    }
+
+    async update(id: string, changes: any) {
+        return this.scd40Model
+            .findByIdAndUpdate(id, { $set: changes }, { new: true })
+            .exec();
+    }
+
+    async remove(id: string): Promise<Scd40> {
+        return this.scd40Model.findByIdAndDelete(id).exec();
+    }
+}
+```
+
+
+
+
+
+
 
