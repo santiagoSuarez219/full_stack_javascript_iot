@@ -750,6 +750,34 @@ export class Scd40Service {
 }
 ```
 
+### Codigo del proyecto
+[Codigo](https://github.com/santiagoSuarez219/scd40example)
+
+### Apendice: Acceder a un servidor local hosteado en WSL 2.0 por medio de dispositivos de la misma red local
+1. En la terminal de WSL vas a escribir lo siguiente y vas a copiar tu direccion IPv4
+```bash
+ifconfig
+```
+2. Luego ejecutaras la terminal de windows "PowerShell" como administrador
+3. Dentro de la PS escribiras el siguiente comando
+```bash
+netsh interface portproxy add v4tov4 listenport=[Puerto del servidor] listenaddress=0.0.0.0 connectport=[Puerto del servidor] connectaddress=[Tu dirección IPv4]
+```
+4. Para finalizar, debemos habilitar estos puertos en el firewall de Windows
+  1. Firewall de Windows Defender
+  2. Configuracion Avanzada
+  3. Reglas de entrada (Lateral izquierda)
+  4. Nueva regla (Lateral derecha)
+  5. Puerto
+  6. TCP y puertos locales especificos (Puerto)
+  7. Nombre: WSL
+  8. Finalizar
+5. ahora podremos acceder a nuestro servidor local desde cualquier dispositivo que este dentro de la misma red local. Cabe aclarar que la dirección IPv4 de la maquina WSL se cambia cada vez que reiniciamos el PC. Lo único de que debemos de hacer es volver a realizar los pasos 1, 2 y 3 con la nueva dirección IPv4 que se le asigno a la maquina WSL.
+
+## Fundamentos de desarrollo Frontend utilizando JavaScript y React
+
+
+
 
 
 
