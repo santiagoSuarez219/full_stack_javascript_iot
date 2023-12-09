@@ -775,6 +775,475 @@ netsh interface portproxy add v4tov4 listenport=[Puerto del servidor] listenaddr
 5. ahora podremos acceder a nuestro servidor local desde cualquier dispositivo que este dentro de la misma red local. Cabe aclarar que la dirección IPv4 de la maquina WSL se cambia cada vez que reiniciamos el PC. Lo único de que debemos de hacer es volver a realizar los pasos 1, 2 y 3 con la nueva dirección IPv4 que se le asigno a la maquina WSL.
 
 ## Fundamentos de desarrollo Frontend utilizando JavaScript y React
+### Que es HTML y CSS y para que sirven
+La web se construye mediante 3 tecnologías esenciales: HTML, CSS y JavaScript. Estos tres lenguajes son las bases en que una aplicación o página web está construida
+
+### Que es HTML
+El lenguaje de marcado de hipertexto o HTML por sus siglas en inglés. (HyperText Markup Language) es el código para construir la estructura de una página web. En otras palabras, HTML es el esqueleto con el cual definimos cada elemento que compone la página web, así como:
+ 
+- Enlaces  	
+- Párrafos
+- Títulos
+- Botones
+- Imágenes
+- Formulario
+
+### Que es CSS
+El lenguaje de hojas de estilos en Cascada o CSS por sus siglas en inglés (Cascade Style Sheets) es el código para describir la presentación de los elementos de la página web, los que definimos con HTML
+
+### Anatomia de un documento HTML y sus elementos
+Los elementos son cada una de las partes que conforman un archivo HTML. Su estructura contiene:
+
+- Etiquetas: es la representación de un elemento HTML. Se divide en etiquetas de apertura, representadas por `<etiqueta>` y etiquetas de cierre, representadas por `</etiqueta>`
+- Contenido: es el texto o elementos encerrados por la etiqueta, este valor es opcional en algunas de ellas. 
+
+```html
+<h1> Hola mundo </h1>
+```
+
+### Atributos HTML
+Los atributos HTML son propiedades en la etiqueta de apertura que manejan el comportamiento del elemento. Su valor está envuelto en comillas
+
+```html
+<h1 class="title"> Hola mundo </h1>
+```
+
+### Elementos anidados
+El anidamiento de elementos HTML consiste en envolver varias etiquetas en otras etiquetas. Interpreta a cada elemento HTML como una caja donde puedes guardar diferentes elementos u otras cajas. Estas cajas tendrán diferentes tamaños y estarán colocadas junto a otras.
+
+```html
+<section>
+    <h1> Hola Mundo</h1>
+    <p> Hola mundo desde HTML </p>
+    <ul>
+        <li> Elemento 1 </li>
+        <li> Elemento 2 </li>
+        <li> Elemento 3 </li>
+    </ul>
+</section>
+```
+
+Aquellas etiquetas que envuelven a otras se las denomina “padres”. Es decir, `<section>` es padre de `<h1>, <p>, <ul>`, y a su vez `<ul>` es padre de 3 etiquetas `<li>`.
+ 
+Las etiquetas que son el contenido de otras, se las denomina “hijos”. Es decir, las etiquetas `<h1>, <p>, <ul>` son hijos de `<section>`, y a su vez las etiquetas `<li>` son hijos de `<ul>`.
+
+### Elementos vacios en HTML
+Los elementos vacíos son aquellos que únicamente se representan en una etiqueta de apertura. Por ejemplo: `<img …>` . Estas etiquetas pueden cerrarse en la misma
+etiqueta de apertura, utilizando la barra inclinada "/" al final `<img …/>`
+
+```html
+<img src="cat.jpg"/> 
+```
+
+### Estructura basica de un documento HTML
+
+```html
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <header></header>
+    <nav></nav>
+    <section></section>
+    <footer></footer>
+</body>
+</html>
+```
+
+1. Etiqueta Doctype: especifica que el archivo se maneje con la versión 5 de HTML.
+2. Etiqueta html: Define el elemento raíz de un documento HTML. Todos los demás elementos deben estar contenidos dentro de este elemento raíz. En esta etiqueta se especifica el lenguaje de la página web mediante la propiedad lang.
+3. Etiqueta head: Define la metainformación, es decir, toda información que no es contenido como tal de la página web. Por ejemplo, los enlaces a archivos CSS y JavaScript, el título y la imagen que aparecen en la pestaña del navegador. Esto es importante para motores de búsqueda como Google.
+4. Etiqueta body: La etiqueta `<body>` define el contenido de la página web. Debe ser hijo cercano de `<html>` y padre de todas las etiquetas HTML, excepto por aquellas que definan metainformación.
+
+### Etiquetas de enlace
+La etiqueta de enlace `<a>` o “anchor” define un vínculo o enlace hacia una URL. Se utiliza con el atributo href con el valor del enlace.
+
+### Etiquetas para textos
+Las etiquetas para textos son aquellas que nos permiten definir el contenido de la página web. Estas etiquetas son:
+
+1. `<h1> - <h6>`
+2. `<p>`
+3. `<span>` define un contenedor genérico de tipo inline. Igual que `<div>` no tiene valor semántico y debes evitar su uso innecesario
+
+### Etiquetas para listas
+Las etiquetas para listas son aquellas que nos permiten definir listas de elementos. Estas etiquetas son:
+
+1. `<ul>` define una lista desordenada
+2. `<ol>` define una lista ordenada
+3. `<li>` define un elemento de la lista
+
+### Etiquetas para multimedia
+Las etiquetas para multimedia son aquellas que nos permiten definir contenido multimedia. Estas etiquetas son:
+
+1. `<img>` define una imagen
+2. `<svg>` define una svg
+3. `<iframe>` define un contenedor para una pagina web dentro de otra pagina web.
+4. `<video>` define un contenedor de video
+
+### Etiquetas para formularios
+Las etiquetas para formularios son aquellas que nos permiten definir formularios. Estas etiquetas son:
+
+1. `<form>` define un formulario
+2. `<input>` define un elemento de entrada del formulario. Es necesario especificar el tipo con el atributo type. Existen varios tipos de input, revísalos en su [documentación](https://developer.mozilla.org/es/docs/Learn/Forms/HTML5_input_types).
+3. `<label>` define un titulo para la etiqueta input. Es utilizado para acciones de accesibilidad.
+4. `<button>` define un botón. Es usado para la interactividad de la página. 
+
+### Anatomia de una declaracion CSS: selectores, propiedades y valores
+Una declaración de CSS es un bloque que especifica el conjunto de estilos que se añadirán a un elemento HTML. Su estructura contiene lo siguiente:
+1. Selector: define el elemento o conjunto de elementos a los cuales se añadirán los estilos.
+2. Propiedad: es el nombere del estilo CSS
+3. Valor: es el valor que tomará la propiedad CSS
+
+```css
+selector {
+    propiedad: valor;
+}
+```
+
+### Algunas propiedades inciales
+ 
+1. Color: establece el color del texto de un elemento
+2. Background-color: establece un color de fondo al elemento
+3. Font-size: establece el tamaño de la fuente
+4. Width: establece la anchura de un elemento.
+5. Height: establece la altura de un elemento
+
+### Medidas inciales en CSS
+Las medidas iniciales en CSS son las siguientes:
+1. px: píxeles
+2. %: establece un porcentaje con respecto a una medida base.
+
+### Selectores de CSS
+Los selectores de CSS son la forma de definir a qué elementos se les aplicará un estilo. Existen diferentes tipos de selectores, los cuales se pueden combinar entre sí para definir un estilo más específico.
+
+**Nota:** Existen color de CSS que puedes explorar [Aqui](https://htmlcolorcodes.com/es/nombres-de-los-colores/).
+
+### Selectores de tipo
+Los selectores de tipo son aquellos que seleccionan a todos los elementos que coincidan con el nombre del selector. Por ejemplo, el selector `p` seleccionará a todos los elementos `<p>`.
+
+### Selectores de clase
+Selecciona todos los elementos que coincidan con las etiquetas HTML que contengan el atributo class
+ 
+```html
+<!--archivo HTML-->
+<div class="card"> Soy una carta </div
+```
+
+Para seleccionar estos elementos, se empieza por un punto . Y seguido el valor exacto del atributo class de la etiqueta. Puede ser cualquier que desees colocar.
+ 
+```css
+/* archivo CSS */
+.card {
+	/* Todas las etiquetas con la clase "card" */
+}
+```
+ 
+Pueden existir más de un valor dentro del atributo class separados por espacios.
+ 
+```html
+<!--archivo HTML-->
+<div class="card card1"> Soy una carta </div>
+<div class="card card2"> Soy una carta </div>
+```
+
+```css
+.card {
+	/* Todas las etiquetas con la clase "card" */
+}
+ 
+.card1 {
+	/* Todas las etiquetas con la clase "card1" */
+}
+ 
+.card2 {
+	/* Todas las etiquetas con la clase "card2" */
+}
+```
+
+### Selectores de id
+Selecciona el único elemento que coincida con la etiqueta HTML que contenga el atributo id. Solo puede existir un valor id para todo el documento.
+ 
+```html
+<!--archivo HTML-->
+<button id="eliminar"> Eliminar </button>
+```
+ 
+Para seleccionar el elemento, se empieza por el símbolo de hashtag # y seguido el valor exacto del atributo id de la etiqueta. Puede ser cualquier valor que desees colocar.
+ 
+```css
+/* archivo CSS */
+#eliminar {
+	/* La única etiqueta con el id "eliminar" */
+}
+```
+
+### Selectores de atributo
+
+### Selectores combinados
+Un selector combinador es la unión de dos o más selectores básicos
+ 
+```css
+Selector1 selector2 selector3 {
+/*Estilos */
+}
+```
+
+#### Combinador descendientes
+Selecciona todos los elementos que coincidan con el selector2 que sean descendientes de selector1
+ 
+```html
+<!--archivo HTML-->
+<div class="card">
+    <h1> Soy un título </h1>
+</div>
+```
+ 
+```css
+/* archivo CSS */
+.card h1 {
+/* Todos los elementos <h1> que sean descendientes de un elemento con la clase "card" */
+}
+```
+
+### Pseudoclases
+Una pseudoclase define el estilo de un estado de un elemento.
+
+[Documentacion](https://developer.mozilla.org/es/docs/Web/CSS/Pseudo-classes#indice_de_las_pseudo-clases_est%C3%A1ndar)
+
+**Sintaxis**
+```css
+selector:pseudoclase {
+    propiedad:valor;
+}
+```
+
+#### Algunos ejemplos de pseudoclases
+1. :hover aplica estilos cuando el cursor está sobre el elemento. [Ejemplo](https://codi.link/PGRpdj5TZcOxw6FsYW1lPC9kaXY+%7CZGl2IHsNCiAgZm9udC1zaXplOiAzcmVtOw0KICBjdXJzb3I6IHBvaW50ZXI7DQp9DQoNCmRpdjpob3ZlciB7DQogIGNvbG9yOiByZWQ7DQp9%7C)
+2. :active Representa el estado de un elemento que no ha sido visitado. [Ejemplo](https://codi.link/PGEgaHJlZj0iIyI+Q2xpY2tlYW1lPC9hPg==%7CYSB7DQogIGZvbnQtc2l6ZTogM3JlbTsNCn0NCg0KYTpsaW5rIHsNCiAgY29sb3I6IHJlZDsNCn0=%7C)
+3. :visited Representa el estado de un elemento que ya ha sido visitado. [Ejemplo](https://codi.link/PGEgaHJlZj0iIyI+Q2xpY2tlYW1lPC9hPg==%7CYSB7DQogIGZvbnQtc2l6ZTogM3JlbTsNCn0NCg0KYTp2aXNpdGVkIHsNCiAgY29sb3I6IHJlZDsNCn0=%7C)
+4. :not Representa el estado en el cual no coinciden los selectoes que se indiquen.
+[Ejemplo](https://codi.link/PGRpdj5BenVsPC9kaXY+DQo8ZGl2PkF6dWw8L2Rpdj4NCjxkaXYgY2xhc3M9Im5lZ3JvIj5OZWdybzwvZGl2Pg0KPGRpdj5BenVsPC9kaXY+DQo8ZGl2PkF6dWw8L2Rpdj4=%7CZGl2IHsNCiAgZm9udC1zaXplOiAzcmVtOw0KfQ0KDQpkaXY6bm90KC5uZWdybykgew0KICBjb2xvcjogYmx1ZTsNCn0=%7C)
+5. :ntn-child() Representa el estado en el cual coinciden los hijos del elemento segun el valor indicado. 
+   1. odd: los elementos hijos con posiciones impares
+   2. even: los elementos hijos en posiciones pares.
+
+[Ejemplo](https://codi.link/PGRpdj5OZWdybzwvZGl2Pg0KPGRpdj5BenVsPC9kaXY+DQo8ZGl2Pk5lZ3JvPC9kaXY+DQo8ZGl2Pk5lZ3JvPC9kaXY+DQo8ZGl2Pk5lZ3JvPC9kaXY+%7CZGl2IHsNCiAgZm9udC1zaXplOiAzcmVtOw0KfQ0KDQpkaXY6bnRoLWNoaWxkKDIpIHsNCiAgY29sb3I6IGJsdWU7DQp9%7C)
+
+### Estilos en linea
+Los estilos en línea son las propiedades CSS escritas en el HTML a través de la propiedad style de toda etiqueta. También es una mala práctica y debes evitarlo.
+
+```html
+ <h1 style="color: blue">Especificad</h1>
+```
+
+### Tipos de displays mas usados
+#### Block
+El display block establece que un elemento ocupará todo el espacio disponible por defecto y el siguiente elemento a este se situará por debajo. Es posible añadir medidas de anchura width y altura height a estos elementos. También es posible agregar todas las propiedades del modelo de caja (no te preocupes de este concepto, ya lo abordaremos).
+
+[Ejemplo](https://codi.link/PGRpdj5Tb3kgZGlzcGxheSBibG9jazwvZGl2Pg0KPGRpdj5Tb3kgZGlzcGxheSBibG9jazwvZGl2Pg0KPGRpdiBjbGFzcz0iY29uX21lZGlkYXMiPlNveSBkaXNwbGF5IGJsb2NrPC9kaXY+DQoNCg==%7CLyogUXVpdGEgbG9zIGNvbWVudGFyaW9zIHkgb2JzZXJ2YSBlbCBjb21wb3J0YW1pZW50byAqLw0KZGl2ew0KICBiYWNrZ3JvdW5kLWNvbG9yOiBhcXVhOw0KICAvKiBtYXJnaW46IDEwcHg7ICovDQogIC8qIHBhZGRpbmc6IDEwcHg7ICovDQp9DQoNCi5jb25fbWVkaWRhcyB7DQogIC8qIHdpZHRoOiAyMDBweDsgKi8NCiAgLyogaGVpZ2h0OiAyMDBweDsgKi8NCn0NCg0KLyogSWdub3JhIGVzdG9zIGVzdGlsb3MsIHBvciBhaG9yYSAqLw0KKiB7DQogIGZvbnQtc2l6ZTogMS4ycmVtOw0KICBtYXJnaW46IDA7DQp9DQoNCg0KDQo=%7C)
+
+#### Visualizacion en linea (inline)
+El display inline establece que un elemento ocupará el espacio del contenido del mismo y el siguiente elemento se situará a la derecha. No es posible añadir medidas de anchura width y altura height a estos elementos. También, no es posible agregar todas las propiedades del modelo de caja, únicamente funcionará la propiedad margin en el eje horizontal (no te preocupes de este concepto, ya lo abordaremos).
+
+[Ejemplo](https://codi.link/PHNwYW4+U295IGRpc3BsYXkgaW5saW5lPC9zcGFuPg0KPHNwYW4+U295IGRpc3BsYXkgaW5saW5lPC9zcGFuPg0KPHNwYW4+U295IGRpc3BsYXkgaW5saW5lPC9zcGFuPg0KPHNwYW4+U295IGRpc3BsYXkgaW5saW5lPC9zcGFuPg0KPHNwYW4gY2xhc3M9ImNvbl9tZWRpZGFzIj5Tb3kgZGlzcGxheSBpbmxpbmU8L3NwYW4+DQoNCg==%7CLyogUXVpdGEgeSBhZ3JlZ2EgbG9zIGNvbWVudGFyaW9zIHkgb2JzZXJ2YSBlbCBjb21wb3J0YW1pZW50byAqLw0Kc3BhbnsNCiAgYmFja2dyb3VuZC1jb2xvcjogYXF1YTsNCiAgLyogbWFyZ2luOiAyMHB4OyAqLw0KICAvKiBwYWRkaW5nOiAyMHB4OyAqLw0KfQ0KDQouY29uX21lZGlkYXMgew0KICAvKiB3aWR0aDogMjAwcHg7ICovDQogIC8qIGhlaWdodDogMjAwcHg7ICovDQp9DQoNCi8qIElnbm9yYSBlc3RvcyBlc3RpbG9zLCBwb3IgYWhvcmEgKi8NCiogew0KICBmb250LXNpemU6IDEuMnJlbTsNCiAgbWFyZ2luOiAwOw0KfQ0KDQoNCg0K%7C)
+
+### Visualizacion nula (none)
+El display none desactiva la visualización de un elemento, como si el elemento no existiera.
+
+[Ejemplo](https://codi.link/PGRpdj48L2Rpdj4NCjxkaXY+PC9kaXY+DQo8ZGl2IGNsYXNzPSJkZXNhcGFyZWNlciI+DQogIEVuIG1pIHNpZ3VpZW50ZSB0cnVjbywgwqF2b3kgYSBkZXNhcGFyZWNlciENCjwvZGl2Pg0KPGRpdj48L2Rpdj4NCjxkaXY+PC9kaXY+DQo=%7CLyogUXVpdGEgbG9zIGNvbWVudGFyaW9zIHkgb2JzZXJ2YSBlbCBjb21wb3J0YW1pZW50byAqLw0KLmRlc2FwYXJlY2Vyew0KICAvKiBkaXNwbGF5OiBub25lOyAqLw0KICBiYWNrZ3JvdW5kLWNvbG9yOiBjb3JuZmxvd2VyYmx1ZTsNCiAgDQp9DQoNCi8qIElnbm9yYSBlc3RvcyBlc3RpbG9zLCBwb3IgYWhvcmEgKi8NCiogew0KICBib3gtc2l6aW5nOiBib3JkZXItYm94Ow0KICBmb250LXNpemU6IDEuMXJlbTsNCiAgbWFyZ2luOiAwOw0KfQ0KDQpib2R5ew0KICBkaXNwbGF5OiBmbGV4Ow0KfQ0KDQpkaXZ7DQogIGJhY2tncm91bmQtY29sb3I6IGNvcmFsOw0KICB3aWR0aDogMTIwcHg7DQogIGhlaWdodDogMTIwcHg7DQogIGZvbnQtd2VpZ2h0OiA4MDA7DQogIHBhZGRpbmc6IDhweDsNCn0NCg0KDQoNCg==%7C)
+
+## Flexbox y CSS Grid
+El display flex y grid son formas de visualización de elementos recientes y cada uno tienen sus propias características para crear interfaces de manera efectiva, a partir de un contenedor padre que dotará a los elementos hijos de superpoderes del posicionamiento.
+
+Ambas son herramientas muy útiles en el desarrollo, especialmente para la creación de interfaces amigables al usuario y aptas para cualquier dispositivo, que a este último se lo conoce como responsive design.
+
+### Flexbox
+Flexbox consiste en el ordenamiento de elementos hijos en un solo eje, por defecto horizontalmente. El elemento padre o contenedor deberá contener la propiedad display con el valor flex. A partir de aquí, ya puedes ordenar los hijos según sea necesario.
+
+[Ejemplo](https://codi.link/PGRpdiBjbGFzcz0iY29udGFpbmVyIj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCjwvZGl2Pg0KDQoNCg0K%7CKiB7DQogIG1hcmdpbjogMDsNCiAgcGFkZGluZzogMDsNCiAgYm94LXNpemluZzogYm9yZGVyLWJveDsNCn0NCg0KLyogUXVpdGEgbG9zIGNvbWVudGFyaW9zIHkgb2JzZXJ2YSBlbCBjb21wb3J0YW1pZW50byAqLw0KLmNvbnRhaW5lcnsNCiAgLyogZGlzcGxheTogZmxleDsgKi8NCn0NCg0KLmNvbnRhaW5lciBkaXYgew0KICB3aWR0aDogMTAwcHg7IA0KICBoZWlnaHQ6IDEwMHB4Ow0KfQ0KDQouY29udGFpbmVyIGRpdjpudGgtY2hpbGQoMm4pew0KICBiYWNrZ3JvdW5kLWNvbG9yOiBhcXVhOw0KfQ0KDQouY29udGFpbmVyIGRpdjpudGgtY2hpbGQoMm4rMSl7DQogIGJhY2tncm91bmQtY29sb3I6IGJyb3duOw0KfQ0KDQoNCg0KDQoNCg0K%7C)
+
+### Grid
+Grid consiste en el ordenamiento de elementos hijos en dos ejes, como si fuera una cuadrícula o tabla. El elemento padre o contenedor deberá contener la propiedad display con el valor grid y debes definir las medidas de las columnas y de las filas. A partir de aquí, ya puedes ordenar los hijos según sea necesario.
+
+[Ejemplo](https://codi.link/PGRpdiBjbGFzcz0iY29udGFpbmVyIj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCiAgPGRpdj48L2Rpdj4NCjwvZGl2Pg0KDQoNCg0K%7CKiB7DQogIG1hcmdpbjogMDsNCiAgcGFkZGluZzogMDsNCiAgYm94LXNpemluZzogYm9yZGVyLWJveDsNCn0NCg0KLyogUXVpdGEgbG9zIGNvbWVudGFyaW9zIHkgb2JzZXJ2YSBlbCBjb21wb3J0YW1pZW50byAqLw0KLmNvbnRhaW5lcnsNCi8qICAgDQogIGRpc3BsYXk6IGdyaWQ7DQogIGdyaWQtdGVtcGxhdGUtY29sdW1uczogMTAwcHggMTAwcHggMTAwcHg7DQogIGdyaWQtdGVtcGxhdGUtcm93czogMTAwcHggMTAwcHggMTAwcHg7IA0KICAqLw0KDQoNCn0NCg0KLmNvbnRhaW5lciBkaXYgew0KICB3aWR0aDogMTAwcHg7IA0KICBoZWlnaHQ6IDEwMHB4Ow0KfQ0KDQouY29udGFpbmVyIGRpdjpudGgtY2hpbGQoMm4pew0KICBiYWNrZ3JvdW5kLWNvbG9yOiBhcXVhOw0KfQ0KDQouY29udGFpbmVyIGRpdjpudGgtY2hpbGQoMm4rMSl7DQogIGJhY2tncm91bmQtY29sb3I6IGJyb3duOw0KfQ0KDQoNCg0KDQoNCg0K%7C)
+
+- [Flexbox vs CSS Grid: ¿Cuál es la diferencia?](https://platzi.com/blog/flexbox-vs-css-grid-cual-es-la-diferencia/)
+- [A Complete Guide to Flexbox](https://css-tricks.com/snippets/css/a-guide-to-flexbox/)
+
+## Modelo de caja
+El modelo de caja se compone de cuatro elementos: margin, border, padding y contenido.
+Si entras a las herramientas de desarrollador de tu navegador y señalas un elemento HTML, en la sección de estilos te aparecerá una vista parecida a la anterior imagen, este es el modelo de caja del elemento señalado.
+
+[Imagen](https://www.eniun.com/modelo-cajas-css-margenes-relleno-bordes/)
+
+### Content
+El contenido del elemento, como su nombre lo indica, es todo lo que está dentro del elemento. Este tiene medidas establecidas por las propiedades width y height, que representan la anchura y la altura, respectivamente. Si imaginamos una caja, este valor sería todo lo que decidas colocar dentro.
+
+### Border
+El border consiste en el perfil o borde de un elemento HTML. Si imaginamos una caja, sería la caja en sí. Para definir un borde es necesario utilizar las siguientes tres propiedades:
+
+- border-color: establece el color del borde.
+- border-style: establece el estilo propio del borde, estos pueden ser: none (sin borde), dotted (puntos), dashed (guiones), solid (continuo), double (doble continuo), groove (recuadro).
+- border-width: estable la anchura del borde.
+
+También se puede establecer los tres valores en una sola propiedad border donde no importa el orden.
+
+[Ejemplo](https://codi.link/PGRpdiBjbGFzcz0ibm9uZSI+U2luIGJvcmRlPC9kaXY+DQo8ZGl2IGNsYXNzPSJkb3R0ZWQiPkNvbiBwdW50b3M8L2Rpdj4NCjxkaXYgY2xhc3M9ImRhc2hlZCI+Q29uIGd1aW9uZXM8L2Rpdj4NCjxkaXYgY2xhc3M9InNvbGlkIj5Db250aW51bzwvZGl2Pg0KPGRpdiBjbGFzcz0iZG91YmxlIj5kb2JsZSBjb250aW51bzwvZGl2Pg0KPGRpdiBjbGFzcz0iZ3Jvb3ZlIj5Db24gcmVjdWFkcm88L2Rpdj4NCg0KDQo=%7CZGl2ew0KICB3aWR0aDogMTIwcHg7DQogIGhlaWdodDogMTIwcHg7DQp9DQoNCi5ub25lew0KICAvKiBWYWxvciBwb3IgZGVmZWN0byBkZSBkaXYgKi8NCiAgYm9yZGVyOiAzcHggYmxhY2sgbm9uZTsNCn0NCg0KLmRvdHRlZHsNCiAgYm9yZGVyOiAzcHggYmxhY2sgZG90dGVkOw0KfQ0KDQouZGFzaGVkew0KICBib3JkZXI6IDNweCBibGFjayBkYXNoZWQ7DQp9DQoNCi5zb2xpZHsNCiAgYm9yZGVyOiAzcHggYmxhY2sgc29saWQ7DQp9DQoNCi5kb3VibGV7DQogIGJvcmRlcjogM3B4IGJsYWNrIGRvdWJsZTsNCn0NCg0KLmdyb292ZXsNCiAgYm9yZGVyOiA1cHggZ3JlZW55ZWxsb3cgZ3Jvb3ZlOw0KfQ0KDQoNCg0KLyogSWdub3JhIGVzdG9zIGVzdGlsb3MsIHBvciBhaG9yYSAqLw0KKiB7DQogIGZvbnQtc2l6ZTogMS4xcmVtOw0KICBtYXJnaW46IDA7DQp9DQoNCmJvZHl7DQogIGRpc3BsYXk6IGZsZXg7DQogIGZsZXgtd3JhcDogd3JhcDsNCiAgZ2FwOiAxLjVyZW07DQogIG1hcmdpbjogMjBweDsNCiAgZm9udC13ZWlnaHQ6IDgwMDsNCn0NCg0KDQoNCg==%7C)
+
+```css
+div {
+    border: [color] [style] [width];
+}
+
+div {
+    border-color: red;
+    border-style: solid;
+    border-width: 1px;
+}
+```
+
+También estableciendo de manera individual los valores de cada posición:
+
+```css
+div {
+    border-top: 5px solid blue;
+    border-bottom: 5px solid red;
+    border-left: 5px solid black
+    border-right: 5px solid yellow;
+}
+```
+
+### Padding
+El padding consiste en el espacio entre el borde y el contenido del elemento HTML. Si imaginamos una caja, este valor sería el espacio entre la caja y lo que deseas guardar.
+
+[Ejemplo](https://codi.link/PGRpdj5Mb3JlbSBpcHN1bSBkb2xvciBzaXQgYW1ldCBjb25zZWN0ZXR1ciBhZGlwaXNpY2luZyBlbGl0aTwvZGl2Pg0KDQoNCg==%7CLyogUXVpdGEgbG9zIGNvbWVudGFyaW9zIHkgb2JzZXJ2YSBlbCBjb21wb3J0YW1pZW50byAqLw0KZGl2ew0KICB3aWR0aDogMTIwcHg7DQogIGhlaWdodDogMTIwcHg7DQogIGJhY2tncm91bmQtY29sb3I6IGdyZWVueWVsbG93Ow0KICBib3JkZXI6IHNvbGlkIDFweCBibGFjazsNCiAgLyogcGFkZGluZzogMzBweDsgKi8NCn0NCg0KDQoNCi8qIElnbm9yYSBlc3RvcyBlc3RpbG9zLCBwb3IgYWhvcmEgKi8NCiogew0KICBmb250LXNpemU6IDEuMXJlbTsNCiAgbWFyZ2luOiAwLjVyZW07DQp9DQo=%7C)
+
+Puedes establecer el padding en cada posicion en una sola linea de las siguientes maneras: 
+
+- padding: [arriba] [derecha] [abajo] [izquierda], siguiendo el sentido horario.
+- padding: [arriba] [abajo] [derecha e izquierda], siguiendo el eje principal.
+- padding: [arriba y abajo] [derecha e izquierda], siguiendo los ejes del elemento.
+
+También estableciendo de manera individual los valores de cada posición:
+
+```css
+div {
+    padding-top: 10px;
+    padding-bottom: 15px;
+    padding-left: 20px;
+    padding-right: 10px;
+}
+```
+
+### Margin
+El margin consiste en el espacio entre el borde y otro elemento HTML. Si imaginamos una caja, es el espacio entre tu caja y otra caja
+
+```css
+div {
+    margin-top: 10px;
+    margin-bottom: 15px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
+```
+
+### Valores por defecto
+Por defecto, el navegador establece valores iniciales a algunas propiedades CSS, este es el caso de margin y padding. Una buena práctica es utilizar el selector universal para restablecer estos valores a 0, para que no surjan errores inesperados.
+
+### Propiedades y valores de CSS
+[Documentacion](https://cssreference.io/)
+
+## Unidades de medida
+Las unidades de medida establecen una longitud para un determinado elemento o tipografía. Existen dos tipos de medidas: absolutas y relativas.
+
+### Medidas absolutas
+Las medidas absolutas son valores fijos, por lo que la medida no cambiará. La unidad absoluta más utilizada son los píxeles px, las demás son muy poco utilizadas, pero es bueno que las conozcas.
+
+### Medidas relativas
+Las medidas relativas son valores variables, por lo que la medida depende de un valor externo. Se debe tener en cuidado con estas porque un pequeño cambio puede desencadenar tamaños muy elevados.
+
+- em: el elemento que lo contiene
+- rem: el elemento raiz
+- vw: 1% del ancho de la pantalla
+- vh: 1% de la altura de la pantalla
+
+La medida em depende del elemento que lo contiene, es decir, si un elemento tiene font-size de 20px, el valor de em es igual a 20px, el valor de 2em será de 40px y así sucesivamente.
+
+La medida rem depende del elemento raíz, el valor del font-size del elemento raíz es de 16px, por lo tanto, el valor de 2rem es igual a 32px, y así sucesivamente.
+
+- [Ejemplo em](https://codi.link/PGRpdiBjbGFzcz0ibml2ZWwxIj4NCiAgPHA+TGV0cmEgZGUgMjBweDwvcD4NCiAgPGRpdiBjbGFzcz0ibml2ZWwyIj4NCiAgICA8cD5MZXRyYSBkZSAyMHB4PC9wPg0KICAgIDxkaXYgY2xhc3M9Im5pdmVsMyI+DQogICAgICA8cD5MZXRyYSBkZSA0MHB4PC9wPg0KICAgICAgPGRpdiBjbGFzcz0ibml2ZWw0Ij4NCiAgICAgICAgPHA+TGV0cmEgZGUgODBweDwvcD4NCiAgICAgIDwvZGl2Pg0KICAgIDwvZGl2Pg0KICA8L2Rpdj4NCjwvZGl2Pg==%7CKiB7DQogIG1hcmdpbjogMDsNCn0NCg0KLm5pdmVsMSB7DQogIC8qIFB1ZWRlcyBjYW1iaWFyIGVzdGUgdmFsb3IgKi8NCiAgZm9udC1zaXplOiAyMHB4Ow0KfQ0KDQoubml2ZWwyIHsNCiAgLyogdGFtYcOxbyA9IDIwcHggKiAxID0gMjBweCAqLw0KICBmb250LXNpemU6IDFlbTsNCn0NCg0KLm5pdmVsMyB7DQogIC8qIHRhbWHDsW8gPSAyMHB4ICogMiA9IDQwcHggKi8NCiAgZm9udC1zaXplOiAyZW07DQp9DQoNCi5uaXZlbDQgew0KICAvKiB0YW1hw7FvID0gNDBweCAqIDIgPSA4MHB4ICovDQogIGZvbnQtc2l6ZTogMmVtOw0KfQ0KDQoNCg==%7C)
+- [Ejemplo rem](https://codi.link/PGRpdiBjbGFzcz0ibml2ZWwxIj4NCiAgPHA+TGV0cmEgZGUgMjBweDwvcD4NCiAgPGRpdiBjbGFzcz0ibml2ZWwyIj4NCiAgICA8cD5MZXRyYSBkZSAxNnB4PC9wPg0KICAgIDxkaXYgY2xhc3M9Im5pdmVsMyI+DQogICAgICA8cD5MZXRyYSBkZSAzMnB4PC9wPg0KICAgICAgPGRpdiBjbGFzcz0ibml2ZWw0Ij4NCiAgICAgICAgPHA+TGV0cmEgZGUgMzJweDwvcD4NCiAgICAgIDwvZGl2Pg0KICAgIDwvZGl2Pg0KICA8L2Rpdj4NCjwvZGl2Pg==%7CLm5pdmVsMSB7DQogIC8qIFB1ZWRlcyBjYW1iaWFyIGVzdGUgdmFsb3IgKi8NCiAgZm9udC1zaXplOiAyMHB4Ow0KfQ0KDQoubml2ZWwyIHsNCiAgLyogdGFtYcOxbyA9IDE2cHggKiAxID0gMTZweCAqLw0KICBmb250LXNpemU6IDFyZW07DQp9DQoNCi5uaXZlbDMgew0KICAvKiB0YW1hw7FvID0gMTZweCAqIDIgPSAzMnB4ICovDQogIGZvbnQtc2l6ZTogMnJlbTsNCn0NCg0KLm5pdmVsNCB7DQogIC8qIHRhbWHDsW8gPSAxNnB4ICogMiA9IDMycHggKi8NCiAgZm9udC1zaXplOiAycmVtOw0KfQ0KDQoNCg==%7C)
+
+### Diferencias entre porcentajes y la anchura y altura de la pantalla
+Los porcentajes representan el tamaño con respecto al total del elemento padre. Si el elemento padre tiene 20px, entonces el 100% será de 20px.
+
+Por otra parte, las medidas de anchura vw y altura vh representan el tamaño con respecto al total de la pantalla. Si el elemento tiene un tamaño de 100vw será el 100 por ciento de la pantalla.
+
+Si un elemento tiene todo el tamaño de la pantalla, entonces solamente en ese punto la medida 100% será igual a 100vw o 100vh.
+
+## Responsive Design
+El diseño responsivo (Responsive Design) consiste en un conjunto de herramientas para que tu sitio se vea bien en varias medidas de pantalla, esto incluye imágenes, tipografía, internacionalización de la página y entre otros.
+
+En la actualidad, la mayoría de sitios web son visitados desde un celular, por lo que asegurarse que nuestro sitio sea responsivo para cualquier dispositivo es fundamental para optimizar las ganancias.
+
+### media queries
+Las media queries son reglas CSS que establecen un comportamiento distinto o diferentes estilos en un cierto rango de la pantalla. Esto sirve para establecer el layout del sitio web para diferentes tipos de pantalla: escritorio, tablets y celulares.
+
+Estos son dos tipos de media querie :
+
+1. max-width / max-height: establece un rango máximo para cierto comportamiento.
+2. min-width / min-height: establece un rango mínimo para cierto comportamiento.
+
+Estos valores son parecidos a condicionales, mientras se cumpla la condición, aplica determinados estilos.
+
+#### Estructura
+La estructura de una media querie consiste en empezar con @media, seguido del tipo de la media querie estableciendo un rango, envolviendo las reglas CSS dentro de ese rango.
+
+```css
+@media (max-width: 750px){
+    div {
+        color: red;
+    }
+    p {
+        background-color: red;
+    }
+}
+```
+
+Para observar que los cambios se estén aplicando correctamente, las herramientas de desarrollador serán de gran ayuda.
+
+Abre las herramientas del navegador y da clic en la opción “Toggle device tool”, aquí podrás manipular la pantalla y observar en cuántos píxeles está ocurriendo determinados estilos.
+
+Utiliza el siguiente ejemplo para visualizar cómo cambian los estilos según la longitud de la pantalla. Puedes revisar la media querie que está en el código. Aunque solo cambien el color de dos elementos, puede estar cualquier propiedad que desees, prueba con todo.
+
+[Ejemplo](https://codi.link/PGRpdiBjbGFzcz0iY2FyZDEiPjwvZGl2Pg0KPGRpdiBjbGFzcz0iY2FyZDIiPjwvZGl2Pg0KDQo=%7CKiB7DQogIG1hcmdpbjogMDsNCiAgcGFkZGluZzogMDsNCiAgYm94LXNpemluZzogYm9yZGVyLWJveDsNCn0NCg0KYm9keSB7DQogIHdpZHRoOiAxMDB2dzsNCiAgaGVpZ2h0OiAxMDB2aDsNCn0NCg0KLmNhcmQxew0KICB3aWR0aDogMTAwJTsNCiAgaGVpZ2h0OiAyNSU7DQogIGJhY2tncm91bmQtY29sb3I6IGJyb3duOw0KfQ0KDQouY2FyZDIgew0KICB3aWR0aDogNTAlOw0KICBoZWlnaHQ6IDc1JTsNCiAgYmFja2dyb3VuZC1jb2xvcjogY2hhcnRyZXVzZTsNCn0NCg0KQG1lZGlhIChtaW4td2lkdGg6IDUwMHB4KXsNCiAgLmNhcmQxIHsNCiAgICAgIGJhY2tncm91bmQtY29sb3I6IGNoYXJ0cmV1c2U7DQogIH0NCg0KICAuY2FyZDIgew0KICAgIGJhY2tncm91bmQtY29sb3I6IGJyb3duOw0KICB9DQp9DQoNCg==%7C)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
