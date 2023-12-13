@@ -1222,6 +1222,505 @@ Utiliza el siguiente ejemplo para visualizar cómo cambian los estilos según la
 
 [Ejemplo](https://codi.link/PGRpdiBjbGFzcz0iY2FyZDEiPjwvZGl2Pg0KPGRpdiBjbGFzcz0iY2FyZDIiPjwvZGl2Pg0KDQo=%7CKiB7DQogIG1hcmdpbjogMDsNCiAgcGFkZGluZzogMDsNCiAgYm94LXNpemluZzogYm9yZGVyLWJveDsNCn0NCg0KYm9keSB7DQogIHdpZHRoOiAxMDB2dzsNCiAgaGVpZ2h0OiAxMDB2aDsNCn0NCg0KLmNhcmQxew0KICB3aWR0aDogMTAwJTsNCiAgaGVpZ2h0OiAyNSU7DQogIGJhY2tncm91bmQtY29sb3I6IGJyb3duOw0KfQ0KDQouY2FyZDIgew0KICB3aWR0aDogNTAlOw0KICBoZWlnaHQ6IDc1JTsNCiAgYmFja2dyb3VuZC1jb2xvcjogY2hhcnRyZXVzZTsNCn0NCg0KQG1lZGlhIChtaW4td2lkdGg6IDUwMHB4KXsNCiAgLmNhcmQxIHsNCiAgICAgIGJhY2tncm91bmQtY29sb3I6IGNoYXJ0cmV1c2U7DQogIH0NCg0KICAuY2FyZDIgew0KICAgIGJhY2tncm91bmQtY29sb3I6IGJyb3duOw0KICB9DQp9DQoNCg==%7C)
 
+## Fundamentos de 
+### Que es React
+React es una librería de JavaScript para construir interfaces de usuario. Fue desarrollada por Facebook. 
+
+### Que es un componente
+Un componente es una pieza de código que puede ser reutilizada. En React, los componentes son funciones que reciben parámetros llamados props y retornan elementos de React (normalmente JSX).
+
+### Que es JSX
+JSX es una extensión de JavaScript que permite escribir código HTML dentro de JavaScript. Esto nos permite escribir código más legible y expresivo. 
+
+### Que es Vite
+
+Vite es un nuevo compilador de código abierto que sirve para crear aplicaciones web modernas con React, Vue, Svelte, Preact y TypeScript. Vite se centra en el tiempo de compilación y el tiempo de ejecución rápido. No es un marco completo, sino más bien un compilador de desarrollo que aprovecha las importaciones nativas de ES Module para lograr un tiempo de compilación rápido y un servidor de desarrollo instantáneo con recarga rápida.
+
+### Que es TailwindCSS
+
+Tailwind CSS es un framework CSS de utilidad de bajo nivel que le permite crear rápidamente diseños personalizados y receptivos para sitios web. Tailwind CSS es un framework CSS de utilidad de bajo nivel que le permite crear rápidamente diseños personalizados y receptivos para sitios web.
+
+### Crear un proyecto con Vite
+
+Para crear un proyecto con Vite, debemos tener instalado Node.js y npm. Luego, abrimos una terminal y ejecutamos el siguiente comando:
+
+```bash
+npm create vite@latest
+```
+
+### Instalacion de TailwindCSS
+
+[https://tailwindcss.com/docs/guides/vite](Documentacion oficial)
+
+_Nota:_ Para empezar de cero un proyecto puedes eliminar la carpeta assets, limpiar el archivo App.css y el index.css y el App.jsx, debe quedar asi.
+
+```jsx
+import "./App.css";
+
+function App() {
+  return (
+    <div className="bg-red-100">
+      <h1>Hola Mundo</h1>
+    </div>
+  );
+}
+
+export default App;
+```
+
+
+### Google Fonts y TailwindCSS
+Para utilizar Google Fonts con TailwindCSS, debemos agregar la fuente en el archivo index.css. Luego, en el archivo tailwind.config.js, debemos agregar la fuente en la propiedad fontFamily.
+
+```css
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@400;700&display=swap');
+
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+}
+```
+
+```js
+module.exports = {
+  purge: ['./src/**/*.{js,jsx,ts,tsx}', './public/index.html'],
+  theme: {
+    extend: {
+      fontFamily: {
+        primary: ['Quicksand','sans-serif'],
+      },
+    },
+  },
+  variants: {
+    extend: {},
+  },
+  plugins: [],
+}
+```
+
+### Configuracion de colores en TailwindCSS
+Para configurar los colores en TailwindCSS, debemos agregarlos en el archivo tailwind.config.js, en la propiedad colors.
+
+```js
+/** @type {import('tailwindcss').Config} */
+export default {
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
+  theme: {
+    extend: {
+      colors:{
+        primary:'#386641',
+        secondary: '#6A994E',
+        tertiary: '#A7C957',
+        quartiary: '#F2E8Cf',
+        quintenary: '#BC4749',
+        input: '#F7F7F7'
+      },
+      fontFamily:{
+        primary:['Quicksand','sans-serif']
+      }
+    },
+    
+  },
+  plugins: [],
+}
+```
+
+1. [Colors](https://coolors.co/)
+
+### Dependencias
+```bash
+npm install mqtt --save
+npm install react-icons --save
+```
+
+### Componentes para la aplicacion
+1. Componente Layaout
+```jsx
+const Layout = ({ children }) => {
+    return (
+        <div className='bg-primary w-full h-screen flex flex-col items-center justify-center'>
+            { children }
+        </div>
+    )
+}
+
+export default Layout
+```
+2. Utilizar el componete Layout
+```jsx
+import Layout from '../Components/Layout'
+
+const App = () => {
+  return (
+    <Layout>
+      <h1 className="text-3xl font-bold underline">Hello world!</h1>
+    </Layout>
+  );
+};
+
+export default App;
+```
+
+3. Componente Card
+```jsx
+import { PiPlant } from "react-icons/pi";
+import { WiThermometer } from "react-icons/wi";
+
+const Card = () => {
+  return (
+    <div className="bg-secondary w-2/5 p-8 flex flex-col shadow-lg rounded-lg">
+      <div className="flex justify-between items-center">
+        <p className="font-bold text-lg">Sensores</p>
+        <PiPlant className="text-green-900 w-8 h-8" />
+      </div>
+      <div className="w-full flex justify-between p-1 mt-2">
+        <div className="flex items-center">
+          <WiThermometer className="w-8 h-8 text-green-900" />
+          <p className="ml-2 text-lg">Temperatura</p>
+        </div>
+        <div className="flex">
+          <p className="text-lg">
+            34 °C
+          </p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Card;
+```
+
+4. Modificar app
+```jsx
+import Layout from '../Components/Layout'
+import Card from '../Components/Card'
+
+const App = () => {
+  return (
+    <Layout>
+      <Card />
+    </Layout>
+  );
+};
+
+export default App;
+```
+
+5. Componente SensorData
+```jsx
+const SensorData = ({ parametro, icon: Icon, iconColor, unidades, valor }) => {
+  return (
+    <div className="w-full flex justify-between p-1 mt-2">
+      <div className="flex items-center">
+        <Icon className={`w-8 h-8 ${iconColor}`} />   
+        <p className="ml-2 text-lg">{ parametro }</p>
+      </div>
+      <div className="flex">
+        <p className="text-lg">{valor} {unidades }</p>
+      </div>
+    </div>
+  );
+};
+
+export default SensorData;
+```
+
+6. Modificar Card
+```jsx
+import { PiPlant } from "react-icons/pi";
+import { WiThermometer } from "react-icons/wi";
+import { WiRaindrop } from "react-icons/wi";
+import { MdCo2 } from "react-icons/md";
+import { WiHumidity } from "react-icons/wi";
+
+import SensorData from "../SensorData";
+
+const Card = () => {
+  return (
+    <div className="bg-secondary w-2/5 p-8 flex flex-col shadow-lg rounded-lg">
+      <div className="flex justify-between items-center">
+        <p className="font-bold text-lg">Sensores</p>
+        <PiPlant className="text-green-900 w-8 h-8" />
+      </div>
+      <SensorData
+        parametro="Temperatura"
+        icon={WiThermometer}
+        iconColor="text-green-900"
+        unidades="°C"
+        valor="25"
+      />
+      <SensorData
+        parametro={"Humedad"}
+        icon={WiHumidity}
+        iconColor="text-blue-900"
+        unidades="%"
+        valor="25"
+      />
+      <SensorData
+        parametro="Dioxido de Carbono"
+        icon={MdCo2}
+        iconColor="text-red-900"
+        unidades="ppm"
+        valor="25"
+      />
+      <SensorData
+        parametro="Vapor de agua"
+        icon={WiRaindrop}
+        iconColor="text-blue-900"
+        unidades="%"
+        valor="25"
+      />
+    </div>
+  );
+};
+
+export default Card;
+```
+
+7. Incluir Boton
+```jsx
+import { PiPlant } from "react-icons/pi";
+....
+
+const Card = () => {
+  return (
+    <div className="bg-secondary w-2/5 p-8 flex flex-col shadow-lg rounded-lg">
+      <div className="flex justify-between items-center">
+        <p className="font-bold text-lg">Sensores</p>
+        <PiPlant className="text-green-900 w-8 h-8" />
+      </div>
+      <SensorData
+        parametro="Temperatura"
+        icon={WiThermometer}
+        iconColor="text-green-900"
+        unidades="°C"
+        valor="25"
+      />
+        ....
+      <div className="w-full flex justify-end mt-2">
+        <button className="p-2 border-2 border-tertiary rounded-lg">Actuador</button>
+      </div>
+    </div>
+  );
+};
+
+export default Card;
+```
+
+### Comunicacion MQTT y contexto de la aplicacion
+1. Crear archivo AppIotContext/index.jsx
+2. Crear archivo AppIotContext/useMqtt.js
+```js
+import { useState, useEffect } from "react";
+import mqtt from "mqtt";
+
+const useMqtt = (topic) => {
+  const [client, setClient] = useState(null);
+  const [message, setMessage] = useState(null);
+
+  const mqttBrokerUrl = "ws://localhost:8083/mqtt";
+
+  const mqttConnect = () => {
+    setClient(mqtt.connect(mqttBrokerUrl));
+  };
+
+  useEffect(() => {
+    if (client) {
+      client.on("connect", () => {
+        client.subscribe(topic);
+        client.subscribe("smartgrow/actuadores");
+        console.log("connection successful");
+      });
+
+      client.on("error", (err) => {
+        console.error("Connection error: ", err);
+        client.end();
+      });
+
+      client.on("message", (topic, message) => {
+        const data = { topic, message: message.toString() };
+        setMessage(data);
+        console.log(`received message: ${message} from topic: ${topic}`);
+      });
+    }
+  }, [client]);
+
+  const mqttPublish = (context) => {
+    if (client) {
+      const { topic, qos, payload } = context;
+      client.publish(topic, payload, qos, (error) => {
+        if (error) {
+          console.log("Publish error: ", error);
+        } else {
+          console.log("Published successfully");
+        }
+      });
+    }
+  };
+
+  return { message, mqttConnect, mqttPublish};
+};
+
+export { useMqtt };
+```
+
+3. Modificar AppIotContext/index.jsx
+```jsx
+import { createContext, useState, useEffect } from "react";
+import { useMqtt } from "./useMqtt";
+
+const AppIotContext = createContext();
+
+function AppIotProvider({ children }) {
+  const { message, mqttConnect, mqttPublish } = useMqtt("smartgrow/sensores");
+
+  const [temperatura, setTemperatura] = useState(null);
+  const [humedad, setHumedad] = useState(null);
+  const [co2, setCo2] = useState(null);
+  const [vaporAgua, setVaporAgua] = useState(null);
+
+  const handleMqttMessage = (data) => {
+    const topic = data.topic;
+    if (topic === "smartgrow/sensores") {
+      data = JSON.parse(data.message);
+      setTemperatura(data.temperatura);
+      setHumedad(data.humedad);
+      setCo2(data.co2);
+      setVaporAgua(data.VPD);
+    } else if (topic === "smartgrow/actuadores") {
+      console.log(data.message);
+    }
+  };
+
+  useEffect(() => {
+    mqttConnect();
+  },[])
+
+  useEffect(() => {
+    if (message !== null) {
+      handleMqttMessage(message);
+    }
+  },[message])
+
+  return (
+    <AppIotContext.Provider
+      value={{
+        temperatura,
+        humedad,
+        co2,
+        vaporAgua,
+        mqttPublish,
+      }}
+    >
+      {children}
+    </AppIotContext.Provider>
+  );
+}
+
+export { AppIotContext, AppIotProvider };
+```
+
+4. Modificar App
+```jsx
+import Layout from '../Components/Layout'
+import Card from '../Components/Card'
+import { AppIotProvider } from '../AppIotContext';
+
+const App = () => {
+  return (
+    <AppIotProvider>
+      <Layout>
+        <Card />
+      </Layout>
+    </AppIotProvider>
+  );
+};
+
+export default App;
+```
+
+5. Modificar Card
+```jsx
+import React, { useContext } from "react";
+import { PiPlant } from "react-icons/pi";
+import { WiThermometer } from "react-icons/wi";
+import { WiRaindrop } from "react-icons/wi";
+import { MdCo2 } from "react-icons/md";
+import { WiHumidity } from "react-icons/wi";
+
+import { AppIotContext } from "../../AppIotContext";
+import SensorData from "../SensorData";
+
+const Card = () => {
+  const { temperatura, humedad, co2, vaporAgua, mqttPublish } =
+    useContext(AppIotContext);
+
+  const context = {
+      topic: "smartgrow/actuadores",
+      qos: 0,
+      payload: "Encender ventilador",
+    };
+
+  return (
+    <div className="bg-secondary w-2/5 p-8 flex flex-col shadow-lg rounded-lg">
+      <div className="flex justify-between items-center">
+        <p className="font-bold text-lg">Sensores</p>
+        <PiPlant className="text-green-900 w-8 h-8" />
+      </div>
+      <SensorData
+        parametro="Temperatura"
+        icon={WiThermometer}
+        iconColor="text-green-900"
+        unidades="°C"
+        valor={temperatura != null ? temperatura : "Cargando... "}
+      />
+      <SensorData
+        parametro={"Humedad"}
+        icon={WiHumidity}
+        iconColor="text-blue-900"
+        unidades="%"
+        valor={humedad != null ? humedad : "Cargando... "}
+      />
+      <SensorData
+        parametro="Dioxido de Carbono"
+        icon={MdCo2}
+        iconColor="text-red-900"
+        unidades="ppm"
+        valor={co2 != null ? co2 : "Cargando... "}
+      />
+      <SensorData
+        parametro="Vapor de agua"
+        icon={WiRaindrop}
+        iconColor="text-blue-900"
+        unidades="%"
+        valor={vaporAgua != null ? vaporAgua : "Cargando..."}
+      />
+      <div className="w-full flex justify-end mt-2">
+        <button className="p-2 border-2 border-tertiary rounded-lg hover:bg-tertiary hover:text-white" onClick={()=>{
+          mqttPublish(context)
+        }}>
+          Actuador
+        </button>
+      </div>
+    </div>
+  );
+};
+
+export default Card;
+```
+
+[Repositorio de GitHub del proyecto](https://github.com/santiagoSuarez219/MqttFrontExample)
+
+
+
+
+
+
 
 
 
